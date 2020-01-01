@@ -115,3 +115,48 @@ const countData = data.reduce((count, key) => {
   return count;
 }, {});
 ```
+
+## Day 5: flexible layout
+![image](https://user-images.githubusercontent.com/26381972/71644324-0d0b7900-2d0a-11ea-8b5c-811932573742.png)
+![image](https://user-images.githubusercontent.com/26381972/71644785-a4c09580-2d11-11ea-96c6-9b09b8e6ff3a.png)
+The flex layout aims at providing a more efficient way to align and distribute space among items in a container, even when their size is unknown and/or dynamic. _(a W3C Candidate Recommendation as of October 2017)_
+#### flex items in same ratio
+```HTML
+<div class="container">
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+</div>
+```
+```CSS
+.container {
+  display: flex;
+}
+.item {
+  flex: 1;
+}
+```
+#### more properties for a Flex Container
+| property | value |
+|:---:|:---:|
+`display` | defines a flex container.
+`flex-direction` | establishes the main-axis of flex items.
+`flex-wrap` | sets how to wrap flex items. `nowrap (default)` \| `wrap` \|  `wrap-reverse`
+`flex-flow` | is shortcut of `flex-direction` and `flex-wrap`.
+`justify-content` | defines the alignment along the main axis.
+`align-content` | defines the alignment along cross axis. (more than 2 line)
+`align-items` | defines the alignment along cross axis. (1 line)
+
+#### more properties for Flex Item
+| property | value |
+|:---:|:---:|
+`order` | controls the order of flex item in the flex container.
+`flex` | is a shortcut of `flex-grow`, `flex-shrink`, `flex-basis`
+`flex-grow` | defines the ability for a flex item to grow if necessary.
+`flex-shrink` | defines the ability for a flex item to shrink if necessary.
+`flex-basis` | defines the default size of a flex item before the remaining space is distributed.
+`align-self` | defines the alignment of Item along a cross axis.
+
+- reference
+  - [A Complete Guide to Flexbox (EN)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+  - [CSS Flex(Flexible Box) 완벽 가이드 (KR)](https://heropy.blog/2018/11/24/css-flexible-box/)
