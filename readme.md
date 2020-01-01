@@ -72,3 +72,46 @@ function handleUpdate() {
 inputs.forEach(e => e.addEventListener('change', handleUpdate));
 inputs.forEach(e => e.addEventListener('mousemove', handleUpdate));
 ```
+
+## Day 4: Array Methods
+#### `array.filter(callback)`
+- The `filter()` method creates a new array with all elements that pass the callback function.
+```JavaScript
+// 1. Filter the list of inventors for those who were born in the 1500's
+const fifteens = inventors.filter(e => 1500 <= e.year && e.year < 1600 );
+```
+#### ` array.map(callback)`
+- The `map()` method creates a new array populated with the results of the callback function on every element.
+```JavaScript
+// 2. Give us an array of the inventors' first and last names
+const fullNames = inventors.map( e => `${e.first} ${e.last}`);
+```
+#### `array.sort([compareFunction])`
+- The `sort()` method sorts the elements of an array in place and returns the sorted array.
+```JavaScript
+// 3. Sort the inventors by birthdate, oldest to youngest
+const oldToYoung = inventors.sort((a, b) => a.year - b.year);
+
+// 7. Sort the people alphabetically by last name
+const orderedPeople = people.sort((a, b) => {
+  const [firstA, lastA] = a.split(', ');
+  const [firstB, lastB] = b.split(', ');
+  return lastA > lastB ? 1 : -1;
+});
+```
+#### `arr.reduce(callback[, initialValue])`
+- The `reduce()` method executes a reducer function on each element of the array, resulting in single output value.
+```JavaScript
+// 4. How many years did all the inventors live?
+const totalYear = inventors.reduce((years, e) => years + e.passed - e.year, 0);
+
+// 8. Sum up the instances of each of these
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+const countData = data.reduce((count, key) => {
+  if (!count[key]) {
+    count[key] = 0;
+  }
+  count[key]++;
+  return count;
+}, {});
+```
