@@ -160,3 +160,80 @@ The flex layout aims at providing a more efficient way to align and distribute s
 - reference
   - [A Complete Guide to Flexbox (EN)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
   - [CSS Flex(Flexible Box) 완벽 가이드 (KR)](https://heropy.blog/2018/11/24/css-flexible-box/)
+
+## Day 6: Typeahead
+![image](https://user-images.githubusercontent.com/26381972/71693228-42d65d80-2def-11ea-895d-1cec75fa5ff1.png)
+
+#### Fetching Data
+- [`fetch(resource[, init])`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
+- The `fetch()` method starts the process of fetching a resource from the network, returning a promise which is fulfilled once the response is available.
+```JavaScript
+const cities = [];
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => cities.push(...data));
+```
+
+#### Regular Expression in JS
+##### [`new RegExp(pattern[, flags])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+- The `RegExp` constructor creates a regular expression object for matching text with a pattern.
+- `flags`
+  - `g`: global match; find all matches rather than stopping after the first match.
+  - `i`: ignore case; if u flag is also enabled, use Unicode case folding.
+  - `m`: multiline; treat beginning and end characters (^ and $) as working over multiple lines.
+  - `s`: "dotAll"; allows . to match newlines.
+  - `u`: Unicode; treat pattern as a sequence of Unicode code points. (See also Binary strings).
+  - `y`: sticky; matches only from the index indicated by the lastIndex property of this regular expression in the target string (and does not attempt to match from any later indexes).
+```JavaScript
+const findMatches = (wordToMatch, cities) => {
+  const regex = new RegExp(wordToMatch, 'gi');
+  return cities.filter(e => e.city.match(regex) || e.state.match(regex));
+}
+```
+
+- To create a regular expression can calling the constructor function of the `RegExp` object, as above.
+- Using the constructor function provides runtime compilation of the regular expression.
+- Use the constructor function when you know the regular expression pattern will be changing, or you don't know the pattern and are getting it from another source, such as user input.
+
+##### [`/pattern/modifiers;`](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
+- To create a regular expression can using literal, which consists of a pattern enclosed between slashes.
+- Regular expression literals provide compilation of the regular expression when the script is loaded.
+- If the regular expression remains constant, using this can improve performance.
+
+```JavaScript
+const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+function displayMatches() {
+  const regex = new RegExp(this.value, 'gi');
+  const matched = findMatches(this.value, cities);
+  const html = matched.map(e => {
+    const cityName = e.city.replace(regex, `<span class='hl'>${this.value}</span>`);
+    const stateName = e.state.replace(regex, `<span class='hl'>${this.value}</span>`);
+    return `
+      <li>
+        <span class='name'>${cityName}, ${stateName}</span>
+        <span class='population'>${numberWithCommas(e.population)}</span>
+      </li>
+    `;
+  }).join('');
+  suggestions.innerHTML = html;
+}
+```
+| Metacharacter | role |
+|:---:|:---:|
+|`\B`|to find a match which is not present at the beginning or end of a word. If a match is found it returns the word else it returns NULL.
+|`\d`|to search digit characters. It is same as `[0-9]`.
+
+| Quantifier | role |
+|:---:|:---:|
+|`p+`| to find match any string containing one or more p.
+|`?=p`|to find match any string which is followed by a specific p.
+|`?!p`|to find the match of any string which is not followed by a specific p.
+|`p{N}`| to find match any string containing a sequence of N times p.
+
+- reference
+  - [MDN - Regular_Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+  - [W3S - RegExp Literal grammar](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
+  - [tp - RegExp Literal grammar](https://www.tutorialspoint.com/javascript/javascript_regexp_object.htm)
