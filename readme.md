@@ -34,3 +34,41 @@ secondHand.style.transform = `rotate(${(s / 60) * 360 + 90}deg)`;
 minHand.style.transform = `rotate(${(m / 60) * 360 + 90}deg)`;
 hourHand.style.transform = `rotate(${(h / 12) * 360 + 90}deg)`;
 ```
+
+## Day3: CSS Variables
+<img src='https://user-images.githubusercontent.com/26381972/71596588-3948bd80-2b83-11ea-9c75-a82eb593f1a0.png' width='300'>
+<img src='https://user-images.githubusercontent.com/26381972/71596534-0f8f9680-2b83-11ea-9dac-af4c7281ef73.png' width='300'>
+
+#### 1. css custom properties
+Property names that are prefixed with `--` represent custom properties that contain a value
+```CSS
+:root {
+  --base: #ffc600;
+  --spacing: 10px;
+  --blur: 10px;
+}
+```
+#### 2. css variables
+custom properties can be used in other declarations using the `var()` function.
+```CSS
+img {
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
+```
+#### 3. update css property
+```
+style.setProperty(propertyName, newValue);
+```
+```JavaScript
+const inputs = document.querySelectorAll('.controls input')
+function handleUpdate() {
+  const suffix = this.dataset.sizing || '';
+  document.documentElement.style.setProperty(
+    `--${this.name}`, this.value + suffix
+    );
+}
+inputs.forEach(e => e.addEventListener('change', handleUpdate));
+inputs.forEach(e => e.addEventListener('mousemove', handleUpdate));
+```
