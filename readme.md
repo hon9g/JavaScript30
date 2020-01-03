@@ -6,6 +6,7 @@ Vanilla JavaScript 30 Day Challenge.
 Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 
 ## Day1: Access to the DOM
+![image](https://user-images.githubusercontent.com/26381972/71702379-7f678080-2e12-11ea-8c7d-7971a3199c2c.png)
 #### 1. To access to the DOM element
 - `Document.querySelector()`
   - Returns the first Element node within the document, in document order, that matches the specified selectors.
@@ -20,8 +21,7 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
   - if `keydown` event occurs play a listener `playSound`
 
 ## Day2: Update styles every second
-<img src='https://user-images.githubusercontent.com/26381972/71594554-bff99c80-2b7b-11ea-9f47-8532a976a3a7.png' width='300'>
-
+![image](https://user-images.githubusercontent.com/26381972/71702821-d8381880-2e14-11ea-90bc-8c4fe3e3a59f.png)
 #### 1. Access and update styles of element nodes
 `node.style.property = value`
 ```JavaScript
@@ -36,8 +36,7 @@ hourHand.style.transform = `rotate(${(h / 12) * 360 + 90}deg)`;
 ```
 
 ## Day3: CSS Variables
-<img src='https://user-images.githubusercontent.com/26381972/71596588-3948bd80-2b83-11ea-9c75-a82eb593f1a0.png' width='300'>
-<img src='https://user-images.githubusercontent.com/26381972/71596534-0f8f9680-2b83-11ea-9dac-af4c7281ef73.png' width='300'>
+![image](https://user-images.githubusercontent.com/26381972/71702171-3d8a0a80-2e11-11ea-8c21-908c2093981b.png)
 
 #### 1. css custom properties
 Property names that are prefixed with `--` represent custom properties that contain a value
@@ -117,8 +116,7 @@ const countData = data.reduce((count, key) => {
 ```
 
 ## Day 5: flexible layout
-![image](https://user-images.githubusercontent.com/26381972/71644324-0d0b7900-2d0a-11ea-8b5c-811932573742.png)
-![image](https://user-images.githubusercontent.com/26381972/71644785-a4c09580-2d11-11ea-96c6-9b09b8e6ff3a.png)
+![image](https://user-images.githubusercontent.com/26381972/71702092-d704ec80-2e10-11ea-9fa3-d088feacdd03.png)
 The flex layout aims at providing a more efficient way to align and distribute space among items in a container, even when their size is unknown and/or dynamic. _(a W3C Candidate Recommendation as of October 2017)_
 #### flex items in same ratio
 ```HTML
