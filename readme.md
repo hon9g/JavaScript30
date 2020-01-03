@@ -18,3 +18,19 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
   - `listener`: EventListener interface || JS function
 - `window.addEventListener('keydown', playSound)`
   - if `keydown` event occurs play a listener `playSound`
+
+## Day2: Update styles every second
+<img src='https://user-images.githubusercontent.com/26381972/71594554-bff99c80-2b7b-11ea-9f47-8532a976a3a7.png' width='300'>
+
+#### 1. Access and update styles of element nodes
+`node.style.property = value`
+```JavaScript
+const now = new Date();
+const s = now.getSeconds();
+const m = now.getMinutes();
+const h = now.getHours();
+
+secondHand.style.transform = `rotate(${(s / 60) * 360 + 90}deg)`;
+minHand.style.transform = `rotate(${(m / 60) * 360 + 90}deg)`;
+hourHand.style.transform = `rotate(${(h / 12) * 360 + 90}deg)`;
+```
