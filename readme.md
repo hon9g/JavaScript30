@@ -235,3 +235,61 @@ function displayMatches() {
   - [MDN - Regular_Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
   - [W3S - RegExp Literal grammar](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
   - [tp - RegExp Literal grammar](https://www.tutorialspoint.com/javascript/javascript_regexp_object.htm)
+
+## Day 7: Array Methods 2
+#### [`array.some(callback[, thisArg])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+- tests whether at least one element in the array passes the provided callback function.
+- returns a Boolean value.
+```JavaScript
+// is at least one person 19 or older?
+const currentYear = new Date().getFullYear();
+const oneAdult = `
+  ${people.some(e => e.year >= currentYear - 19)
+    ? 'At least one person'
+    : 'No one'
+  } over 19.
+`;
+```
+#### [`array.every(callback[, thisArg])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+- tests whether all elements in the array pass the provided callback function.
+- returns a Boolean value.
+```JavaScript
+// is everyone 19 or older?
+const allAdult = `
+  ${people.every(e => e.year >= currentYear - 19)
+    ? 'All'
+    : 'Not all'
+  } people are over 19.
+`;
+```
+#### [`array.find(callback[, thisArg])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+-  returns the value of the first element in the provided array that satisfies the provided callback function.
+```JavaScript
+// find the comment with the ID of 823423
+const comment = comments.find(e => e.id === 823423);
+```
+#### [`array.findIndex(callback[, thisArg])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+- returns the index of the first element in the array that satisfies the provided callback function.
+- if no element passed the test, it returns -1.
+```JavaScript
+// find the index with the ID of 823423
+const idx = comments.findIndex(e => e.id === 823423);
+```
+#### [`array.slice([begin[, end]])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+- returns a shallow copy of a portion of an array into a new array object selected from begin to end - 1.
+```JavaScript
+// create new array without a comment at comments[idx]
+const newComments = [
+  ...comments.slice(0, idx),
+  ...comments.slice(idx+1)
+];
+```
+#### [`array.splice(start[, deleteCount, item1, item2, ...])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+- changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+  - `start`: The index at which to start changing the array.
+  - `deleteCount`: The number of elements to remove.
+  - `item`: The elements to add to the array.
+```JavaScript
+// delete a comment at comments[idx]
+comments.splice(idx, 1);
+```
