@@ -293,3 +293,101 @@ const newComments = [
 // delete a comment at comments[idx]
 comments.splice(idx, 1);
 ```
+## Day 8: HTML5 canvas
+
+![image](https://user-images.githubusercontent.com/26381972/71877839-7c032a80-316d-11ea-9ac1-736ec895da7a.png)
+
+#### [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)
+`<canvas>` is an HTML element which can be used to draw graphics via scripting. This can, for instance, be used to draw graphs, combine photos, or create animations.
+
+#### 1. define canvas element
+```HTML
+<canvas id="draw" width="800" height="800"></canvas>
+```
+- `<canvas>` has only two attributes, `width` and `height`. These are both optional.
+
+#### 2. access the rendering context
+```JavaScript
+const canvas = document.querySelector('#draw');
+const ctx = canvas.getContext('2d');
+```
+- [`RenderingContext`](https://developer.mozilla.org/en-US/docs/Web/API/RenderingContext) is a WebIDL typedef which can refer to any one of the interfaces that represent a graphics rendering context within a `<canvas>` element.
+
+#### 2. set properties of rendering context
+
+```JavaScript
+ctx.strokeStyle = '#BADA55'
+ctx.linejoin = 'round';
+ctx.lineCap = 'round';
+```
+
+property | about
+:---:|:---:
+`ctx.lineCap`| is a shape of the stroke, `round` \| `butt` \| `square`
+`ctx.lineJoin`|  determines the shape used to join two line segments where they meet, `bevel` \| `round` \| `miter`
+`ctx.lineWidth`| specifies the thickness of lines
+`ctx.strokeStyle`| specifies the color, gradient, or pattern to use for the strokes (outlines) around shape. The default is `#000` (black)
+`ctx.fillStyle`| specifies the color, gradient, or pattern to use inside shapes. The default is `#000` (black)
+
+#### 2. use methods to draw stroke
+
+Method| about
+:---:|:---:
+`ctx.beginPath()`| starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+`ctx.moveTo()`| begins a new sub-path at the point specified by the given (x, y) coordinates.
+`ctx.lineTo()`| adds a straight line to the current sub-path by connecting the sub-path's last point to the specified (x, y) coordinates.
+`ctx.stroke()`| strokes the current or given path with the current stroke style.
+
+```JavaScript
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let direction = true;
+
+function draw(e) {
+  if(!isDrawing) return;
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+  lastX, lastY = [e.offsetX, e.offsetY]
+  ctx.lineWidth = ctx.lineWidth < 500 ? ctx.lineWidth + 1 : 500;
+}
+
+canvas.addEventListener('mousedown', (e) => {
+  lastX, lastY = [e.offsetX, e.offsetY];
+  ctx.lineWidth = 10;
+  isDrawing = true;
+});
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseout', () => isDrawing = false);
+canvas.addEventListener('mouseup', () => isDrawing = false);
+```
+
+#### `hsl()`
+The **HSL** is the **H**ue - **S**aturation - **L**ightness model.
+
+Hue|Saturation|Lightness
+:---:|:---:|:---:
+an angle of the color circle|a percentage of saturation|a percentages lightness
+`0` \| `360` is red|`100%` \| `1` is full saturation|`100%` \| `1` is white
+`120` is green|`50%` \| `0.5` is half saturation|`50%` \| `0.5` is normal
+`240` is blue|`0%` \|`0` is achromatic|`0%` \| `0` is black
+
+
+#### Draw a rainbow in a stroke
+```JavaScript
+let hue = 0;
+
+function draw(e) {
+  if(!isDrawing) return;
+  ctx.strokeStyle = `hsl(${hue}, 20%, 50%)`;
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+  lastX, lastY = [e.offsetX, e.offsetY]
+  ctx.lineWidth = ctx.lineWidth < 500 ? ctx.lineWidth + 1 : 500;
+  hue = hue > 360 ? 0 : hue + 1;
+}
+```
