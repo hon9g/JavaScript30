@@ -391,3 +391,16 @@ function draw(e) {
   hue = hue > 360 ? 0 : hue + 1;
 }
 ```
+
+## Day 9: dev tools & console tricks
+
+#### [DOM change BreakPoint](https://developers.google.com/web/tools/chrome-devtools/javascript/breakpoints#dom)
+![image](https://user-images.githubusercontent.com/26381972/71986218-6f66fb00-326f-11ea-967a-8f29f030e23a.png)
+Use DOM change breakpoints when you want to pause in code that changes DOM nodes or their children.
+
+type|about
+:---:|:---:
+**Subtree modifications** | Triggered when a child element of the currently selected node is deleted or added, or when the child element's content changes. It is not triggered when the attributes of the child element nodes change or when the currently selected node changes.
+**Attributes modifications** | Triggered when adding or deleting attributes to the currently selected node, or when attribute values ​​change.
+**Node Removal** | Triggered when the currently selected node is deleted.
+
