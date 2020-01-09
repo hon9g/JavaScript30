@@ -404,3 +404,74 @@ type|about
 **Attributes modifications** | Triggered when adding or deleting attributes to the currently selected node, or when attribute values ​​change.
 **Node Removal** | Triggered when the currently selected node is deleted.
 
+## Day 10: forEach() & MouseEvent()
+
+![image](https://user-images.githubusercontent.com/26381972/72051797-46924480-3307-11ea-89b8-46025ef53e05.png)
+
+#### forEach()
+- Looping through check boxes, checking all boxes between last checked box and the currently checked box.
+```JavaScript
+function handleCheck(e) {
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+    checkboxes.forEach(checkbox => {
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;);
+      }
+      if (inBetween) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  lastChecked = this;
+}
+```
+- In fact, we don't need to check since the current checked box, so exiting the loop is more efficient.
+- can not use `return` `break` `continue` for a `forEach()` loop.
+
+```JavaScript
+function handleCheck(e) {
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i] === this) {
+        break;
+      }
+      else if (checkboxes[i] === lastChecked) {
+        inBetween = !inBetween;
+      }
+      else if (inBetween) {
+        checkboxes[i].checked = true;
+      }
+    }
+  }
+  lastChecked = this;
+}
+```
+
+#### [MouseEvent()](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent)
+- The MouseEvent interface represents events that occur due to the user interacting with a pointing device (such as a mouse).
+
+property|about
+:---:|:---:
+**MouseEvent.altKey**|Returns true if the alt key was down when the mouse event was fired.
+**MouseEvent.ctrlKey**|Returns true if the control key was down when the mouse event was fired.
+**MouseEvent.metaKey**|Returns true if the meta key was down when the mouse event was fired.
+**MouseEvent.shiftKey**|Returns true if the shift key was down when the mouse event was fired.
+**MouseEvent.button**|The button number that was pressed (if applicable) when the mouse event was fired.
+**MouseEvent.buttons**|The buttons being depressed (if any) when the mouse event was fired.
+**MouseEvent.clientX**|The X coordinate of the mouse pointer in local (DOM content) coordinates.
+**MouseEvent.clientY**|The Y coordinate of the mouse pointer in local (DOM content) coordinates.
+**MouseEvent.x**|Alias for MouseEvent.clientX.
+**MouseEvent.y**|Alias for MouseEvent.clientY
+**MouseEvent.movementX**|The X coordinate of the mouse pointer relative to the position of the last mousemove event.
+**MouseEvent.movementY**|The Y coordinate of the mouse pointer relative to the position of the last mousemove event.
+**MouseEvent.offsetX**|The X coordinate of the mouse pointer relative to the position of the padding edge of the target node.
+**MouseEvent.offsetY**|The Y coordinate of the mouse pointer relative to the position of the padding edge of the target node.
+**MouseEvent.pageX**|The X coordinate of the mouse pointer relative to the whole document.
+**MouseEvent.pageY**|The Y coordinate of the mouse pointer relative to the whole document.
+**MouseEvent.screenX**|The X coordinate of the mouse pointer in global (screen) coordinates.
+**MouseEvent.screenY**|The Y coordinate of the mouse pointer in global (screen) coordinates.
+**MouseEvent.region**|Returns the id of the hit region affected by the event. If no hit region is affected, null is returned.
+**MouseEvent.relatedTarget**|The secondary target for the event, if there is one.
