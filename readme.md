@@ -5,7 +5,24 @@
 Vanilla JavaScript 30 Day Challenge.
 Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 
-## Day1: Access to the DOM
+### Index
+Click :memo: to go each topic
+
+day|topic|memo
+|:--:|:--:|:--:|
+1|Access to the DOM|[:memo:](#day1-Access-to-the-DOM)
+2|Update styles every second|[:memo:](#day2-Update-styles-every-second)
+3|CSS Variables|[:memo:](#day3-CSS-Variables)
+4|day 4 Array Methods|[:memo:](#day4-Array-Methods)
+5|Flexible layout|[:memo:](#day5-flexible-layout)
+6|Typeahead|[:memo:](#day6-Typeahead)
+7|Array Methods 2|[:memo:](#day7-Array-Methods-2)
+8|HTML5 canvas|[:memo:](#day8-HTML5-canvas)
+9|dev tools & console tricks|[:memo:](#day9-dev-tools-and-console-tricks)
+10|forEach() & MouseEvent()|[:memo:](#day10-forEach-and-MouseEvent)
+11|Custom Video Player|[:memo:](#day11-Custom-Video-Player)
+
+## day1 Access to the DOM
 ![image](https://user-images.githubusercontent.com/26381972/71702379-7f678080-2e12-11ea-8c7d-7971a3199c2c.png)
 #### 1. To access to the DOM element
 - `Document.querySelector()`
@@ -20,7 +37,7 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 - `window.addEventListener('keydown', playSound)`
   - if `keydown` event occurs play a listener `playSound`
 
-## Day2: Update styles every second
+## day2 Update styles every second
 ![image](https://user-images.githubusercontent.com/26381972/71702821-d8381880-2e14-11ea-90bc-8c4fe3e3a59f.png)
 #### 1. Access and update styles of element nodes
 `node.style.property = value`
@@ -35,7 +52,7 @@ minHand.style.transform = `rotate(${(m / 60) * 360 + 90}deg)`;
 hourHand.style.transform = `rotate(${(h / 12) * 360 + 90}deg)`;
 ```
 
-## Day3: CSS Variables
+## day3 CSS Variables
 ![image](https://user-images.githubusercontent.com/26381972/71702171-3d8a0a80-2e11-11ea-8c21-908c2093981b.png)
 
 #### 1. css custom properties
@@ -72,7 +89,7 @@ inputs.forEach(e => e.addEventListener('change', handleUpdate));
 inputs.forEach(e => e.addEventListener('mousemove', handleUpdate));
 ```
 
-## Day 4: Array Methods
+## day4 Array Methods
 #### `array.filter(callback)`
 - The `filter()` method creates a new array with all elements that pass the callback function.
 ```JavaScript
@@ -115,7 +132,7 @@ const countData = data.reduce((count, key) => {
 }, {});
 ```
 
-## Day 5: flexible layout
+## day5 flexible layout
 ![image](https://user-images.githubusercontent.com/26381972/71702092-d704ec80-2e10-11ea-9fa3-d088feacdd03.png)
 The flex layout aims at providing a more efficient way to align and distribute space among items in a container, even when their size is unknown and/or dynamic. _(a W3C Candidate Recommendation as of October 2017)_
 #### flex items in same ratio
@@ -159,7 +176,7 @@ The flex layout aims at providing a more efficient way to align and distribute s
   - [A Complete Guide to Flexbox (EN)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
   - [CSS Flex(Flexible Box) 완벽 가이드 (KR)](https://heropy.blog/2018/11/24/css-flexible-box/)
 
-## Day 6: Typeahead
+## day6 Typeahead
 ![image](https://user-images.githubusercontent.com/26381972/71693228-42d65d80-2def-11ea-895d-1cec75fa5ff1.png)
 
 #### Fetching Data
@@ -236,7 +253,7 @@ function displayMatches() {
   - [W3S - RegExp Literal grammar](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
   - [tp - RegExp Literal grammar](https://www.tutorialspoint.com/javascript/javascript_regexp_object.htm)
 
-## Day 7: Array Methods 2
+## day7 Array Methods 2
 #### [`array.some(callback[, thisArg])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
 - tests whether at least one element in the array passes the provided callback function.
 - returns a Boolean value.
@@ -293,7 +310,7 @@ const newComments = [
 // delete a comment at comments[idx]
 comments.splice(idx, 1);
 ```
-## Day 8: HTML5 canvas
+## day8 HTML5 canvas
 
 ![image](https://user-images.githubusercontent.com/26381972/71877839-7c032a80-316d-11ea-9ac1-736ec895da7a.png)
 
@@ -392,7 +409,7 @@ function draw(e) {
 }
 ```
 
-## Day 9: dev tools & console tricks
+## day9 dev tools and console tricks
 
 #### [DOM change BreakPoint](https://developers.google.com/web/tools/chrome-devtools/javascript/breakpoints#dom)
 ![image](https://user-images.githubusercontent.com/26381972/71986218-6f66fb00-326f-11ea-967a-8f29f030e23a.png)
@@ -404,7 +421,7 @@ type|about
 **Attributes modifications** | Triggered when adding or deleting attributes to the currently selected node, or when attribute values ​​change.
 **Node Removal** | Triggered when the currently selected node is deleted.
 
-## Day 10: forEach() & MouseEvent()
+## day10 forEach and MouseEvent
 
 ![image](https://user-images.githubusercontent.com/26381972/72051797-46924480-3307-11ea-89b8-46025ef53e05.png)
 
@@ -475,3 +492,18 @@ property|about
 **MouseEvent.screenY**|The Y coordinate of the mouse pointer in global (screen) coordinates.
 **MouseEvent.region**|Returns the id of the hit region affected by the event. If no hit region is affected, null is returned.
 **MouseEvent.relatedTarget**|The secondary target for the event, if there is one.
+
+## day11 Custom Video Player
+![image](https://user-images.githubusercontent.com/26381972/76519471-6b8c6a80-64a4-11ea-9ece-ff7e42b217fb.png)
+#### <video></video>
+- you can provide many sources for a video to support various browser
+```html
+<video class="player__video viewer">
+  <source src="652333414.mp4" type="video/mp4">
+  <source src="another-source" type="other-type4">
+</video>
+```
+#### querySelector()
+- we use query selector to get html element.
+- `const video = player.querySelector('.viewer');` return an element which has the class name `veiwer`.
+- `const skipButtons = player.querySelectorAll('[data-skip]');` return elements which has the attributr `data-skip`.
