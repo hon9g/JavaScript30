@@ -22,6 +22,7 @@ day|topic|memo
 10|forEach() & MouseEvent()|[:memo:](#day10-forEach-and-MouseEvent)
 11|Custom Video Player|[:memo:](#day11-Custom-Video-Player)
 12|KONAMI CODE|[:memo:](#day12-KONAMI-CODE)
+13|Slide in on Scroll|[:memo:](#day-13-Slide-in-on-Scroll)
 
 ## day1 Access to the DOM
 ![image](https://user-images.githubusercontent.com/26381972/71702379-7f678080-2e12-11ea-8c7d-7971a3199c2c.png)
@@ -529,3 +530,11 @@ window.addEventListener('keyup', e => {
   }
 });
 ```
+## day 13 Slide in on Scroll
+![DS_20200313-202117_](https://user-images.githubusercontent.com/26381972/76616954-8b856200-6568-11ea-88b0-3c1014a150cb.gif)
+#### property of a window interface
+- `window.innerHeight` the interior height of the window in pixels, including the height of the horizontal scroll bar, if present.
+- `window.ScrollY`  the number of pixels that the document is currently scrolled vertically.
+#### property of a HTML element
+- `HTMLElement.offsetTop` the distance of the current element relative to the top of the offsetParent node.
+- `img.height` specify the height of the image in pixel.
