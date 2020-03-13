@@ -22,7 +22,8 @@ day|topic|memo
 10|forEach() & MouseEvent()|[:memo:](#day10-forEach-and-MouseEvent)
 11|Custom Video Player|[:memo:](#day11-Custom-Video-Player)
 12|KONAMI CODE|[:memo:](#day12-KONAMI-CODE)
-13|Slide in on Scroll|[:memo:](#day-13-Slide-in-on-Scroll)
+13|Slide in on Scroll|[:memo:](#day13-Slide-in-on-Scroll)
+14|Reference vs Copy|[:memo:](#day14-Reference-vs-Copy)
 
 ## day1 Access to the DOM
 ![image](https://user-images.githubusercontent.com/26381972/71702379-7f678080-2e12-11ea-8c7d-7971a3199c2c.png)
@@ -530,7 +531,7 @@ window.addEventListener('keyup', e => {
   }
 });
 ```
-## day 13 Slide in on Scroll
+## day13 Slide in on Scroll
 ![DS_20200313-202117_](https://user-images.githubusercontent.com/26381972/76616954-8b856200-6568-11ea-88b0-3c1014a150cb.gif)
 #### property of a window interface
 - `window.innerHeight` the interior height of the window in pixels, including the height of the horizontal scroll bar, if present.
@@ -538,3 +539,30 @@ window.addEventListener('keyup', e => {
 #### property of a HTML element
 - `HTMLElement.offsetTop` the distance of the current element relative to the top of the offsetParent node.
 - `img.height` specify the height of the image in pixel.
+
+## day14 Reference vs Copy
+```JavaScript
+const arr = [1,2,[3]], obj = {name:'h', located: 'seoul'};
+```
+This is Reference
+```JavaScript
+const ref1 = arr, ref2 = obj;
+```
+
+This is Shallow Copy
+```JavaScript
+const copyArr1 = [...arr], // <- new in ES6 === ES2015
+      copyArr2 = [].concat(arr),
+      copyArr3 = arr.slice(),
+      copyArr4 = Array.from(arr);
+      
+const copyObj1 = {...obj}, // <- new in ES9 === ES2018
+      copyObj2 = Object.assign({}, obj);
+```
+
+This is Deep Copy
+```JavaScript
+const deepCopy1 = JSON.parse(JSON.stringify(arr));
+const deepCopy2 = JSON.parse(JSON.stringify(obj));
+```
+- or use `lodash.clonedeep`

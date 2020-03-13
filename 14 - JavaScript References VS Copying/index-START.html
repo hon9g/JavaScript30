@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    // start with strings, numbers and booleans
+    let age1 = 100,
+        age2 = age1; 
+    console.log(age1, age2); // 100 100
+    
+    age2 = 200;
+    console.log(age1, age2); // 100 200
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // Make reference & copy
+    const reference = players, // it is an array reference, not an array copy. They both point to the same array!
+          copid = [...players],   // use the new ES6 Spread to copy
+          copid2 = players.slice(), // use slice to copy
+          copid3 = [].concat(players), // use concat to copy
+          copid4 = Array.from(players);  // use Array.from to copy
+    
+    players[0] = 'hon9g';
+    reference[1] = 'xx';
+  
+    console.log(players);    //  ["hon9g", "xx", "Ryan", "Poppy"]
+    console.log(reference); // ["hon9g", "xx", "Ryan", "Poppy"]
+    console.log(copid);    // ["Wes", "Sarah", "Ryan", "Poppy"]
+    console.log(copid2);  // ["Wes", "Sarah", "Ryan", "Poppy"]
+    console.log(copid3); // ["Wes", "Sarah", "Ryan", "Poppy"]
+    console.log(copid4);// ["Wes", "Sarah", "Ryan", "Poppy"]
+
+
+    // The same thing goes for objects, let's say we have a person object
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+    const reference1 = person,
+          copy1 = Object.assign({}, person, {number: 99}),
+          copy2 = {...person}; // Object Spread provide shallow copy
+
+    reference1.age = 500;
+
+    console.log(person);       // {name: "Wes Bos", age: 500}
+    console.log(reference1);  // {name: "Wes Bos", age: 500}
+    console.log(copy1);      // {name: "Wes Bos", age: 80, number: 99}
+
+    // Spread Syntax only copy 1 level deep both for Arrays and Objects.
+    // lodash has a cloneDeep method, but you should think twice before using it.
+
+    const wes = {
+      name: 'Wes',
+      age: 100,
+      social: {
+        twitter: '@wesbos',
+        facebook: 'wesbos.developer'
+      }
+    };
+
+    console.clear();
+    console.log(wes);
+
+    const dev = Object.assign({}, wes);
+    const dev2 = JSON.parse(JSON.stringify(wes));
+    dev.name = "Lee";
+    dev.social.twitter = '@coca';
+    
+    console.log(wes); // {name: "Wes" .. social: {twitter: "@coca", .. }}
+    console.log(dev); // {name: "Lee" .. social: {twitter: "@coca", .. }}
+    console.log(dev2);// {name: "Wes" .. social: {twitter: "@wesbos", .. }}
+
+  </script>
+
+</body>
+</html>
