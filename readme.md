@@ -21,6 +21,7 @@ day|topic|memo
 9|dev tools & console tricks|[:memo:](#day9-dev-tools-and-console-tricks)
 10|forEach() & MouseEvent()|[:memo:](#day10-forEach-and-MouseEvent)
 11|Custom Video Player|[:memo:](#day11-Custom-Video-Player)
+12|KONAMI CODE|[:memo:](#day12-KONAMI-CODE)
 
 ## day1 Access to the DOM
 ![image](https://user-images.githubusercontent.com/26381972/71702379-7f678080-2e12-11ea-8c7d-7971a3199c2c.png)
@@ -507,3 +508,24 @@ property|about
 - we use query selector to get html element.
 - `const video = player.querySelector('.viewer');` return an element which has the class name `veiwer`.
 - `const skipButtons = player.querySelectorAll('[data-skip]');` return elements which has the attributr `data-skip`.
+
+## day12 KONAMI CODE
+![image](https://user-images.githubusercontent.com/26381972/76598507-5ff18000-6546-11ea-89de-d392db63843c.png)
+### .splice() with negative index
+`array.splice(start[, deleteCount[, ...elements to add])`
+- `0 < start` => Delete elements as mush deleteCount from array[start] & Add elements from array[start] 
+- `0 > start` => -1 means starts from end
+- `start > array.length` => no element will be deleted & will behave as an adding function
+- `0 >= deleteCount` => no elements will be deleted
+
+```JavaScript
+const pressed = [], secretCode = 'hon9g';
+window.addEventListener('keyup', e => {
+  pressed.push(e.key);
+  // If pressed.length exceeds secretCode.length delete the first element at position -6
+  pressed.splice(-secretCode.length -1, pressed.length - secretCode.length);
+  if (pressed.join('') === secretCode) {
+    cornify_add();
+  }
+});
+```
