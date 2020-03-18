@@ -24,6 +24,10 @@ day|topic|memo
 12|KONAMI CODE|[:memo:](#day12-KONAMI-CODE)
 13|Slide in on Scroll|[:memo:](#day13-Slide-in-on-Scroll)
 14|Reference vs Copy|[:memo:](#day14-Reference-vs-Copy)
+15|LocalStorage and Event Delegation|[:memo:](#day15-LocalStorage-and-Event-Delegation)
+16|Mouse Move Shadow|[:memo:](#day16-Mouse-Move-Shadow)
+17|Sort Without Articles|[:memo:](#day17-Sort-Without-Articles)
+18|Adding Up Times with Reduce|[:memo:](#day18-Adding-Up-Times-with-Reduce)
 
 ## day1 Access to the DOM
 ![image](https://user-images.githubusercontent.com/26381972/71702379-7f678080-2e12-11ea-8c7d-7971a3199c2c.png)
@@ -566,3 +570,48 @@ const deepCopy1 = JSON.parse(JSON.stringify(arr));
 const deepCopy2 = JSON.parse(JSON.stringify(obj));
 ```
 - or use `lodash.clonedeep`
+
+## day15 LocalStorage and Event Delegation
+`localStorage` and `sessionStorage` which were added from HTML5 store data as `key - value` on the client side
+#### Window.localStorage
+- Data stored in localStorage has no expiration time.
+```JavaScript
+localStorage.setItem('key', 'val');
+localStorage.getItem('key');
+localStorage.removeItem('key');
+localStorage.clear();
+```
+#### Window.sessionStorage
+- Data in sessionStorage is cleared when the page session ends.
+- A page session lasts as long as the browser is open, and survives over page reloads and restores.
+- Opening a page in a new tab or window creates a new session with the value of the top-level browsing context, which differs from how session cookies work.
+- Opening multiple tabs/windows with the same URL creates sessionStorage for each tab/window.
+- Closing a tab/window ends the session and clears objects in sessionStorage.
+```JavaScript
+sessionStorage.setItem('key', 'value');
+sessionStorage.getItem('key');
+sessionStorage.removeItem('key');
+sessionStorage.clear();
+```
+#### Event Delegation
+Attach a single event listener on parent node instead dynamicly added nodes.
+
+## day16 Mouse Move Shadow
+![DS_20200319-034020_](https://user-images.githubusercontent.com/26381972/76995721-9c343e80-6993-11ea-9749-6ce7442fd09c.gif)
+
+## day17 Sort Without Articles
+```JavaScript
+const strip = name => name.replace(/^(a |the |an )/i, '');
+bands.sort((a,b) => strip(a) > strip(b) ? 1 : -1);
+```
+#### Regular Expression
+- literal: `let re = /ab+c/;`
+- calling constructor function: `let re = new RegExp('ab+c');`
+
+## day18 Adding Up Times with Reduce
+```JavaScript
+const seconds = timeNodes.reduce((totalTime, node) => {
+      const [mins, secs] = node.dataset.time.split(':').map(parseFloat);
+      return totalTime + (mins*60) +secs;
+      }, 0);
+```
